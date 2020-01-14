@@ -6,12 +6,12 @@
 resources:
   repositories:
   # The name used to reference this repository in the checkout step
-  - repository: jeremy-training 
+  - repository: bashCalc 
     type: github
     endpoint: testconnection1
     name: jeremy-training/bashCalc
 # The name used to reference this repository in the checkout step
-  - repository: KangsWindowsBatchRepo
+  - repository: winBatch
     type: github
     endpoint: testconnection1
     name: jeremy-training/winBatch
@@ -42,3 +42,35 @@ stages:
         echo Learning is fun, please check below.
         echo See https://www.kavinschool.com/content/
       displayName: 'Run a multi-line script'
+
+#Second Stage on Ubuntu Prod
+- stage: UbuntuProdEnvCheck
+  dependsOn: UbuntuQAEnvCheck
+  condition: succeeded()
+  jobs:
+  - job: ExternalScripts
+    pool:
+      vmImage: 'ubuntu-latest'
+     # these variables only available in ExternalScripts job
+    variables:
+      FIRST: 100
+      SECOND: 20
+      OPERATION: 4
+
+    steps:
+      - checkout: winBash
+      - task: Bash@3
+        displayName: 'install bc'
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+            
+            echo 'installation starts'
+            sudo apt-get install bc
+            echo 'installation ends'
+
+      - task: Bash@3
+        displayName: 'run calc'
+        inputs:
+          filePath: 'calc.sh'
