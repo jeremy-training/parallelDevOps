@@ -9,12 +9,12 @@ resources:
   - repository: KangsBashCalcRepo 
     type: github
     endpoint: testconnection1
-    name: jeremypfeifertraining/bashCalc
+    name: jeremytraining/bashCalc
 # The name used to reference this repository in the checkout step
   - repository: KangsWindowsBatchRepo
     type: github
     endpoint: testconnection1
-    name: jeremypfeifertraining/winBatch
+    name: jeremytraining/winBatch
 
 trigger:
 - master
