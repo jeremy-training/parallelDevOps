@@ -6,7 +6,7 @@
 resources:
   repositories:
   # The name used to reference this repository in the checkout step
-  - repository: KangsBashCalcRepo 
+  - repository: jeremytraining 
     type: github
     endpoint: testconnection1
     name: jeremytraining/bashCalc
@@ -22,11 +22,23 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+#Muliple Stages with multiple jobs
+#Different OS and different github repo
+stages:
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+#First Stage on Ubuntu
+- stage: UbuntuQAEnvCheck
+  jobs:
+  - job: InlineScripts
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    #No Checkout
+    - checkout: none
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
+
+    - script: |
+        echo Learning is fun, please check below.
+        echo See https://www.kavinschool.com/content/
+      displayName: 'Run a multi-line script'
