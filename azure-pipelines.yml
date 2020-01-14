@@ -6,15 +6,15 @@
 resources:
   repositories:
   # The name used to reference this repository in the checkout step
-  - repository: jeremytraining 
+  - repository: jeremy-training 
     type: github
     endpoint: testconnection1
-    name: jeremytraining/bashCalc
+    name: jeremy-training/bashCalc
 # The name used to reference this repository in the checkout step
   - repository: KangsWindowsBatchRepo
     type: github
     endpoint: testconnection1
-    name: jeremytraining/winBatch
+    name: jeremy-training/winBatch
 
 trigger:
 - master
