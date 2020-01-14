@@ -58,7 +58,7 @@ stages:
       OPERATION: 4
 
     steps:
-      - checkout: winBatch
+      - checkout: bashCalc
       - task: Bash@3
         displayName: 'install bc'
         inputs:
